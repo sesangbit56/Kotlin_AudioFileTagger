@@ -1,2 +1,2 @@
 # Kotlin_AudioFileTagger
-AudioFile tagger by Kotlin based on jaudiotagger
+AudioFile tagger made with Kotlin based on jaudiotagger
