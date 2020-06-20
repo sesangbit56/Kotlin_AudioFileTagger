@@ -11,6 +11,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 class AudioFile() {
+    /*
 
     val logger: Logger = Logger.getLogger("org.jaudiotagger.audio")
 
@@ -114,8 +115,7 @@ class AudioFile() {
         return tag
     }
 
-    public getTagAndConvertOrCreateAndSetDefault() : Tag {
 
-    }
+     */
 }
 
