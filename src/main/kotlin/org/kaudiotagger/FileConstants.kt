@@ -3,7 +3,7 @@ package org.kaudiotagger
 interface FileConstants{
 
     //편의성을 위해서 선언해놓은 변수입니다.
-
+    //TODO 그냥 이것들 원래 상태로 되돌립시다아
     /*
     val BIT7 : Int
         get() = 0x80
