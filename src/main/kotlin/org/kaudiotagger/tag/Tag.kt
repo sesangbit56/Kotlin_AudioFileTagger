@@ -1,5 +1,8 @@
 package org.kaudiotagger.tag
 
+import org.kaudiotagger.tag.images.Artwork
+import java.nio.charset.Charset
+
 interface Tag {
 
     fun setField(genericKey : FieldKey, vararg value : String )
@@ -27,5 +30,39 @@ interface Tag {
     fun getFirstField(id : String) : TagField
 
     fun getFirstField(id : FieldKey) : TagField
+
+    fun hasCommonFields() : Boolean
+
+    fun hasField(fieldKey: FieldKey) : Boolean
+
+    fun hasField(id : String)
+
+    override fun toString() : String
+
+    fun getFieldCount() : Int
+
+    fun getFieldCountIncludeingSubValues() : Int
+
+    fun setEncoding(enc : Charset) : Boolean
+
+    fun getArtworkList() : List<Artwork>
+
+    fun getFirstArtwork() : Artwork
+
+    fun deleteArtworkField()
+
+    fun createField(artwork : Artwork) : TagField
+
+    fun setField(artwork : Artwork)
+
+    fun addField(artwork : Artwork)
+
+    fun setField(field : TagField)
+
+    fun addField(field : TagField)
+
+    fun createField(genericKey: FieldKey, vararg value : String) : TagField
+
+    fun createCompilationField(value : Boolean) : TagField
 
 }
