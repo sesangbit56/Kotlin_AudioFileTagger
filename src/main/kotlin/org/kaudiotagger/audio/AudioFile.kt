@@ -102,7 +102,7 @@ class AudioFile() {
     }
 
     fun getTagOrCreateDefault() : Tag {
-        val tag : Tag = this.tag
+        val tag : Tag? = this.tag
         if(tag == null){
             return createDefaultTag()
         }
