@@ -4,6 +4,7 @@ import java.io.File
 import java.util.logging.Logger
 
 import org.kaudiotagger.audio.AudioHeader
+import org.kaudiotagger.tag.Tag
 import java.io.FileNotFoundException
 import java.io.RandomAccessFile
 import java.lang.RuntimeException
@@ -12,8 +13,6 @@ import java.nio.file.Path
 
 class AudioFile() {
 
-
-    interesting
     val logger: Logger = Logger.getLogger("org.jaudiotagger.audio")
 
     protected var file: File?
@@ -26,7 +25,7 @@ class AudioFile() {
             field = value
         }
 
-    protected var tag: Tag?
+    protected var tag : Tag?
 
     protected var extension: String?
 
@@ -115,6 +114,29 @@ class AudioFile() {
         this.tag = tag
         return tag
     }
+
+    fun getTagAndConvertOrCreateAndSetDefault() : Tag {
+        val tag : Tag = getTagOrCreateDefault()
+        //TODO 이 메소드가 Wav와 Aif 파일에서도 작동할 수 있도록 합시다아
+        if(tag is AbstractID3v2Tag) {
+            //TODO 나머지 채웁시다아ㅏ
+        }
+        return this.tag
+    }
+
+    fun getBaseFilename(file : File) : String {
+        val index : Int = file.name.toLowerCase().lastIndexOf(".")
+        if(index > 0) {
+            return file.name.substring(0, index)
+        }
+        return file.name
+    }
+
+    /*
+    fun convertID3Tag(tag : AbstractID3v2Tag, id3V2Version : ID3V2Version) : AbstractId3v2Tag {
+        //TODO 이곳이 2중 when문으로 커버가 될까? 일단 ifelse문으로 해보고 나중에 다시 작성해보자
+    }
+    */
 
 
 
