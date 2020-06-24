@@ -1,8 +1,10 @@
 package org.kaudiotagger.tag
 
+import TagIterator
 import org.kaudiotagger.tag.images.Artwork
 import java.nio.charset.Charset
 
+//TODO Mutable 여부 확인
 interface Tag {
 
     fun setField(genericKey : FieldKey, vararg value : String )
@@ -17,7 +19,7 @@ interface Tag {
 
     fun getFields(id : FieldKey) : List<TagField>
 
-    fun getFields() : Iterator<TagField>
+    fun getFields() : TagIterator
 
     fun getFirst(id : String) : String
 
@@ -27,7 +29,7 @@ interface Tag {
 
     fun getValue(id : FieldKey, n : Int) : String
 
-    fun getFirstField(id : String) : TagField
+    fun getFirstField(id : String) : TagField?
 
     fun getFirstField(id : FieldKey) : TagField
 
@@ -35,7 +37,9 @@ interface Tag {
 
     fun hasField(fieldKey: FieldKey) : Boolean
 
-    fun hasField(id : String)
+    fun hasField(id : String) : Boolean
+
+    fun isEmpty() : Boolean
 
     override fun toString() : String
 
@@ -47,7 +51,7 @@ interface Tag {
 
     fun getArtworkList() : List<Artwork>
 
-    fun getFirstArtwork() : Artwork
+    fun getFirstArtwork() : Artwork?
 
     fun deleteArtworkField()
 
