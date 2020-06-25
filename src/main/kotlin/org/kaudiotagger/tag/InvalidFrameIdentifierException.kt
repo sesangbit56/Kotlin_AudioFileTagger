@@ -1,3 +1,3 @@
 package org.kaudiotagger.tag
 
-class InvalidFrameIdentifierException(msg : String, ex : Throwable) : InvalidFrameException(msg, ex)
+class InvalidFrameIdentifierException(override val message: String?, override val cause: Throwable?) : InvalidFrameException(message, cause)

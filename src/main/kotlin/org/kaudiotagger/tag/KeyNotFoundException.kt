@@ -1,4 +1,4 @@
 package org.kaudiotagger.tag
 
-class KeyNotFoundException(msg : String, ex : Throwable) : RuntimeException(msg, ex) {
+class KeyNotFoundException(override val message: String?, override val cause: Throwable?) : RuntimeException(message, cause) {
 }

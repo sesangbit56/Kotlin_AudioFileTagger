@@ -1,3 +1,3 @@
 package org.kaudiotagger.tag
 
-class FieldDataInvalidException (msg : String, ex : Throwable) : TagException(msg, ex)
+class FieldDataInvalidException (override val message: String?, override val cause: Throwable?) : TagException(message, cause)

@@ -1,3 +1,3 @@
 package org.kaudiotagger.tag
 
-class InvalidDataTypeException(msg : String, ex : Throwable) : InvalidTagException(msg, ex)
+class InvalidDataTypeException(override val message: String?, override val cause: Throwable?) : InvalidTagException(message, cause)

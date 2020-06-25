@@ -1,3 +1,3 @@
 package org.kaudiotagger.tag
 
-class EmptyFrameException (msg : String, ex : Throwable) : TagException(msg, ex)
+class EmptyFrameException (override val message: String?, override val cause: Throwable?) : TagException(message, cause)

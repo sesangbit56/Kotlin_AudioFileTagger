@@ -22,17 +22,17 @@ interface AudioHeader {
 
     var channels : String?
 
-    var variableBitRate : Boolean
-
     var trackLength : Int?
 
     var preciseTrackLength : Double?
 
     var bitsPerSample : Int?
 
-    var isLossless : Boolean?
+    var noOfSamples : Long?
 
-    var getNoOfSamples : Long?
+    fun isVariableBitRate() : Boolean?
+
+    fun isLossless() : Boolean?
 
 
 }
