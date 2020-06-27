@@ -32,7 +32,7 @@ class GenericAudioHeader(private var audioDataLength : Long? = null,
 
     override fun getFormat(): String? = encodingType
 
-    override fun getTrackLength(): Int?  = Math.round(getPreciseTrackLength()!!) as Int
+    override fun getTrackLength(): Int?  = getPreciseTrackLength()?.roundToInt()
 
     override fun getPreciseTrackLength(): Double? = trackLength
 
@@ -83,7 +83,7 @@ class GenericAudioHeader(private var audioDataLength : Long? = null,
     }
 
     override fun toString(): String {
-        var out : StringBuilder = StringBuilder()
+        val out : StringBuilder = StringBuilder()
         out.append("Audio Header content:\n")
         if(audioDataLength != null) {
             out.append("\taudioDataLength:$audioDataLength\n")
