@@ -2,37 +2,38 @@ package org.kaudiotagger.audio
 
 interface AudioHeader {
 
-    var encodingType : String?
+    fun getEncodingType() : String?
 
-    var byteRate : Int?
+    fun getByteRate() : Int?
 
-    var bitRateAsNumber : Long?
+    fun getBitRate() : String?
 
-    var audioDataLength : Long?
+    fun getBitRateAsNumber() : Long?
 
-    var audioDataStartPosition : Long?
+    fun getAudioDataLength() : Long?
 
-    var audioDataEndPosition : Long?
+    fun getAudioDataStartPosition() : Long?
 
-    var sampleRateAsNumber : Int?
+    fun getAudioDataEndPosition() : Long?
 
-    var sampleRate : String?
+    fun getSampleRate() : String?
 
-    var format : String?
+    fun getSampleRateAsNumber() : Int?
 
-    var channels : String?
+    fun getFormat() : String?
 
-    var trackLength : Int?
-
-    var preciseTrackLength : Double?
-
-    var bitsPerSample : Int?
-
-    var noOfSamples : Long?
+    fun getChannels() : String?
 
     fun isVariableBitRate() : Boolean?
 
+    fun getTrackLength() : Int?
+
+    fun getPreciseTrackLength() : Double?
+
+    fun getBitsPerSample() : Int?
+
     fun isLossless() : Boolean?
 
+    fun getNoOfSamples() : Long?
 
 }
