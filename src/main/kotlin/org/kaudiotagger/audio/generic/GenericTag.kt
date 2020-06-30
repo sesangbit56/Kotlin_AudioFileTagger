@@ -4,6 +4,7 @@ import org.kaudiotagger.logging.ErrorMessage
 import org.kaudiotagger.tag.FieldKey
 import org.kaudiotagger.tag.TagField
 import org.kaudiotagger.tag.TagTextField
+import org.kaudiotagger.tag.images.Artwork
 import java.lang.IllegalArgumentException
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
@@ -12,10 +13,14 @@ import kotlin.collections.ArrayList
 
 
 //TODO nullable 타입 변수 선언에 심각한 오류가 있을 것으로 예상됨 추후 수정 바람.
-abstract class GenericTag : AbstractTag {
+abstract class GenericTag : AbstractTag() {
+
     companion object {
-        val EMPTY_BYTE_ARRAY : ByteArray? = null
-        protected var supportedKeys : EnumSet<FieldKey> = EnumSet.of(FieldKey.ALBUM, FieldKey.ARTIST, FieldKey.TITLE, FieldKey.TRACK, FieldKey.GENRE, FieldKey.COMMENT, FieldKey.YEAR)
+        val enptyByteArray: ByteArray? = null
+        var supportedKeys: EnumSet<FieldKey>
+        init {
+            supportedKeys = EnumSet.of(FieldKey.ALBUM, FieldKey.ARTIST, FieldKey.TITLE, FieldKey.TRACK, FieldKey.GENRE, FieldKey.COMMENT, FieldKey.YEAR)
+        }
     }
 
     protected class GenericTagTextField(private var content : String? = null, private val id : String? = null) : TagTextField {
@@ -34,7 +39,7 @@ abstract class GenericTag : AbstractTag {
 
         override fun getId(): String? = id
 
-        override fun getRawContent(): ByteArray? = if(content == null) EMPTY_BYTE_ARRAY else content!!.toByteArray(getEncoding() as Charset)
+        override fun getRawContent(): ByteArray? = if(content == null) null else content!!.toByteArray(getEncoding() as Charset)
 
         override fun isBinary(): Boolean = false
 
@@ -108,5 +113,11 @@ abstract class GenericTag : AbstractTag {
         } else {
             throw UnsupportedOperationException(ErrorMessage.GENERIC_NOT_SUPPORTED.getMsg())
         }
+    }
+
+    override fun getArtworkList(): List<Artwork> = Collections.emptyList()
+
+    override fun createField(artwork: Artwork): TagField {
+        throw UnsupportedOperationException(ErrorMessage.GENERIC_NOT_SUPPORTED.getMsg())
     }
 }
