@@ -14,18 +14,19 @@ abstract class AbstractTag : Tag {
 
     protected var commonNumber : Int = 0
 
-    protected var fields : MutableMap<String, MutableList<TagField>> = LinkedHashMap()
+    //TODO 이게 실제로 작동하는가?
+    protected var fields : MutableMap<String?, MutableList<TagField>?>? = HashMap()
 
     override fun addField(field: TagField) {
         if(field == null) {
             return
         }
-        var list : MutableList<TagField>? = fields.get(field.getId())
+        var list : MutableList<TagField>? = fields?.get(field.getId())
 
         if (list == null) {
             list = ArrayList()
             list.add(field)
-            fields.put(field.getId(), list)
+            fields?.put(field.getId(), list)
             if (field.isCommon()) {
                 commonNumber++
             }
@@ -35,7 +36,7 @@ abstract class AbstractTag : Tag {
     }
 
     override fun getFields(id: String): MutableList<TagField> {
-        var list : MutableList<TagField>? = fields.get(id)
+        var list : MutableList<TagField>? = fields?.get(id)
 
         if (list == null) {
             return ArrayList()
@@ -74,8 +75,8 @@ abstract class AbstractTag : Tag {
 
     fun getAll() : MutableList<TagField> {
         val fieldList : MutableList<TagField> = ArrayList()
-        for (listOfFields : List<TagField> in fields.values) {
-            for(next : TagField in listOfFields) {
+        for (listOfFields : List<TagField>? in fields?.values!!) {
+            for(next : TagField in listOfFields!!) {
                 fieldList.add(next)
             }
         }
@@ -83,7 +84,7 @@ abstract class AbstractTag : Tag {
     }
 
     override fun getFields(): TagIterator {
-        val it : MutableIterator<Map.Entry<String, List<TagField>>> = this.fields.entries.iterator()
+        val it : MutableIterator<Map.Entry<String?, List<TagField>?>>? = this.fields?.entries?.iterator()
 
         //로컬 함수의 선언 불가로 인해 따로 TagIterator를 사용하여 Iterator를 상속.
         return TagIterator(it)
@@ -119,7 +120,7 @@ abstract class AbstractTag : Tag {
 
     //TODO 이 구현부를 isEmpty()로 바꿔도 되는가?
     override fun isEmpty(): Boolean {
-        return fields.size == 0
+        return fields?.size == 0
     }
 
     override fun setField(genericKey: FieldKey, vararg value: String) {
@@ -137,7 +138,7 @@ abstract class AbstractTag : Tag {
             return
         }
 
-        var list : MutableList<TagField>? = fields.get(field.getId())
+        var list : MutableList<TagField>? = fields?.get(field.getId())
         if (list != null) {
             list.set(0, field)
             return
@@ -145,7 +146,7 @@ abstract class AbstractTag : Tag {
 
         list = ArrayList()
         list.add(field)
-        fields.put(field.getId(), list)
+        fields?.put(field.getId(), list)
         if(field.isCommon()) {
             commonNumber++
         }
@@ -190,7 +191,7 @@ abstract class AbstractTag : Tag {
     abstract override fun deleteField(fieldKey: FieldKey)
 
     override fun deleteField(key: String) {
-        fields.remove(key)
+        fields?.remove(key)
     }
 
     override fun getFirstArtwork(): Artwork? {

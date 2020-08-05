@@ -6,7 +6,7 @@ import kotlin.text.StringBuilder
 
 //TODO 변수 & 함수명을 바꾸는 등 좀 더 효율적인 방법이 있을 것임. 확인 바람.
 //TODO 상당한 양의 오류가 있을 것으로 보임. 추후 확인 바람.
-class GenericAudioHeader(private var audioDataLength : Long? = null,
+open class GenericAudioHeader(private var audioDataLength : Long? = null,
                          private var audioDataStartPosition : Long? = null,
                          private var audioDataEndPosition : Long? = null,
                          private var bitRate : Int? = null,
@@ -14,7 +14,7 @@ class GenericAudioHeader(private var audioDataLength : Long? = null,
                          private var samplingRate : Int? = null,
                          private var bitsPerSample : Int? = null,
                          private var encodingType : String? = null,
-                         private var isVbr : Boolean? = null,
+                         private var isVbr : Boolean? = true,
                          private var isLossless : Boolean? = null,
                          private var trackLength : Double? = null,
                          private var noOfSamples : Long? = null,

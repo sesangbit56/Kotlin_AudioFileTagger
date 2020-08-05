@@ -4,11 +4,11 @@ import java.nio.charset.Charset
 
 interface TagTextField : TagField {
 
-    fun getContent() : String
+    fun getContent() : String?
 
-    fun getExcoding() : Charset
+    fun getEncoding() : Charset?
 
-    fun setContent(content : String)
+    fun setContent(content : String?)
 
-    fun setEncoding(encoding : Charset)
+    fun setEncoding(encoding : Charset?)
 }

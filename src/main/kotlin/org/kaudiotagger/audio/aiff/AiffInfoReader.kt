@@ -1,4 +1,6 @@
 package org.kaudiotagger.audio.aiff
 
-class AiffInfoReader {
+import org.kaudiotagger.audio.aiff.chunk.AiffChunkReader
+
+class AiffInfoReader : AiffChunkReader {
 }

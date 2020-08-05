@@ -4,9 +4,9 @@ interface TagField {
 
     fun copyContent(field : TagField)
 
-    fun getId() : String
+    fun getId() : String?
 
-    fun getRawContent() : Array<Byte>
+    fun getRawContent() : ByteArray?
 
     fun isBinary() : Boolean
 

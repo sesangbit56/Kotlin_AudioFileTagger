@@ -4,6 +4,8 @@ import java.io.File
 import java.util.logging.Logger
 
 import org.kaudiotagger.audio.AudioHeader
+import org.kaudiotagger.audio.exceptions.NoReadPermissionsException
+import org.kaudiotagger.audio.generic.Permissions
 import org.kaudiotagger.tag.Tag
 import java.io.FileNotFoundException
 import java.io.RandomAccessFile
@@ -13,21 +15,19 @@ import java.nio.file.Path
 
 class AudioFile() {
 
-    val logger: Logger = Logger.getLogger("org.jaudiotagger.audio")
 
-    protected var file: File?
-        set(value) {
-            field = value
-        }
+    val logger: Logger = Logger.getLogger("org.kaudiotagger.audio")
 
-    protected var audioHeader: AudioHeader?
-        set(value) {
-            field = value
-        }
 
-    protected var tag : Tag?
+    //TODO protected 접근자를 지워야지만 진행할 수 있었다. 다른 방법은 없는 것인가?
+    var file: File? = null
+        get() = this.file
 
-    protected var extension: String?
+    var audioHeader: AudioHeader? = null
+
+    var tag : Tag? = null
+
+    var extension: String? = null
 
     constructor(f: File, audioHeader: AudioHeader, tag: Tag) {
         this.file = f
@@ -124,12 +124,14 @@ class AudioFile() {
         return this.tag
     }
 
-    fun getBaseFilename(file : File) : String {
-        val index : Int = file.name.toLowerCase().lastIndexOf(".")
-        if(index > 0) {
-            return file.name.substring(0, index)
+    companion object {
+        fun getBaseFilename(file: File): String {
+            val index: Int = file.name.toLowerCase().lastIndexOf(".")
+            if (index > 0) {
+                return file.name.substring(0, index)
+            }
+            return file.name
         }
-        return file.name
     }
 
     /*
